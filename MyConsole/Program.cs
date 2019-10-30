@@ -11,7 +11,7 @@ namespace MyConsole
         static void Main(string[] args)
         {
             var secret = "8a64c35116e906b79d0763d0354b8a5e7ad31515c0774e8cb9a3e2034fc0219f";
-            var text = "s";
+            var text = "[{\"id\":\"10000\"},{\"id\":\"10001\"}]";
 
             var key = Enumerable.Range(0, secret.Length)
                      .Where(x => x % 2 == 0)
