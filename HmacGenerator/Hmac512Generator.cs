@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -6,20 +7,23 @@ namespace HmacGenerator
 {
     public class Hmac512Generator
     {
-        public string Encrypt(string text)
+        public string GetSignature(string text)
         {
-            // var bytes = Encoding.UTF8.GetBytes(text);
-            // var secret = "63 72 79 70 74 69 69";
+            var secret = "8a64c35116e906b79d0763d0354b8a5e7ad31515c0774e8cb9a3e2034fc0219f";
 
-            // var signature = "qMzokf6ZQNSMK2V82PXUTLxzQOsW3+RQLzccFvV51yU=";
+            var key = Enumerable.Range(0, secret.Length)
+                     .Where(x => x % 2 == 0)
+                     .ToList()
+                     .Select(x => Convert.ToByte(secret.Substring(x, 2), 16))
+                     .ToArray();
 
-            // // HMACSHA512 hmac = new HMACSHA512(ascii.GetBytes(secret));
-            // var hmac = new HMACSHA512();
+            var bytes = Encoding.UTF8.GetBytes(text);
 
-            // var calculatedSignature = Convert.ToBase64String(hmac.ComputeHash(bytes));
+            var hmac = new HMACSHA512(key);
+            var computedHash = hmac.ComputeHash(bytes);
 
-            // return calculatedSignature;
-            return "";
+            var bitConverted = BitConverter.ToString(computedHash).Replace("-", "").ToLower();
+            return bitConverted;
         }
     }
 }
