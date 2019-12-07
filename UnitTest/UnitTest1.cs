@@ -17,5 +17,17 @@ namespace UnitTest
 
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void Test2()
+        {
+            var expected = "da8392178a22d342a1cb4e694c5076411704daf6545cad28888bfd89a59ddc70ff11f8d514910b99e3dd8211d55fcdde6c7dcc4e2224ac3346f0f2af2db1b8c0";
+            var input = "{\"responseUid\":\"9c07234b-90cb-4c15-a1b6-d277ddda8aca\",\"user\":{\"id\":1001,\"name\":\"Chaiwat Matarak\",\"friend\":null}}";
+
+            var auditor = new Hmac512Generator();
+            var result = auditor.GetSignature(input);
+
+            Assert.Equal(expected, result);
+        }
     }
 }
