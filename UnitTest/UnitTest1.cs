@@ -1,6 +1,7 @@
 using System;
 using Xunit;
 using HmacGenerator;
+using System.Linq;
 
 namespace UnitTest
 {
