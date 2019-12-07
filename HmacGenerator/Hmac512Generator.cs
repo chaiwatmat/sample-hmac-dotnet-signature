@@ -22,8 +22,7 @@ namespace HmacGenerator
             var hmac = new HMACSHA512(key);
             var computedHash = hmac.ComputeHash(bytes);
 
-            var bitConverted = BitConverter.ToString(computedHash).Replace("-", "").ToLower();
-            return bitConverted;
+            return BitConverter.ToString(computedHash).Replace("-", "").ToLower();
         }
     }
 }
