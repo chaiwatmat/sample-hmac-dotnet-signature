@@ -24,13 +24,13 @@ namespace HmacGenerator
             if (isHex)
             {
                 return Enumerable.Range(0, secret.Length)
-                             .Where(x => x % 2 == 0)
-                             .ToList()
-                             .Select(x => Convert.ToByte(secret.Substring(x, 2), 16))
-                             .ToArray();
+                    .Where(x => x % 2 == 0)
+                    .ToList()
+                    .Select(x => Convert.ToByte(secret.Substring(x, 2), 16))
+                    .ToArray();
             }
 
-            return Encoding.UTF8.GetBytes(secret); ;
+            return Encoding.UTF8.GetBytes(secret);
         }
     }
 }
